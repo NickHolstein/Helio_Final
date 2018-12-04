@@ -29,7 +29,7 @@ export const Content = styled('div')`
   }
 `
 export const Title = styled('div')`
-  font-size: 25px;
+  font-size: 17px;
   margin-bottom: 20px;
 `
 

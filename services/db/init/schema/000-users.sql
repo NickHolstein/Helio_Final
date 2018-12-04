@@ -12,5 +12,5 @@ create table if not exists users
     email text,
     joined_date timestamp
 );
-grant select, insert, update, delete on table users to Toph's Playhouse_app;
-grant select on table users to Toph's Playhouse_read;
+grant select, insert, update, delete on table users to tp_app;
+grant select on table users to tp_read;

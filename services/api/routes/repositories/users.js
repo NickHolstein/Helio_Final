@@ -30,6 +30,20 @@ export async function updateUsername(handle, val) {
   return results[0]
 }
 
+export async function registerNewUser(username, firstName, middleName, lastName, suffix, email) {
+  const statement = sql `insert into users (username, firstName, middleName, lastName, suffix, email,)
+                        values (${username}, ${firstName}, ${middleName}, ${lastName}, ${suffix}, ${email}) returning *`;
+  const results = await PGWrapper.sqlAndMap(statement, userMapper)
+  return results[0]
+}
+
+export async function createNewUserPass(userHandle, passhash) {
+  const statement = sql `insert into passhash (user_handle, passhash) 
+                         values (${username}, ${passhash});`
+  const results = await PGWrapper.sqlAndMap(statement, userMapper)
+  return results[0]
+}
+
 // export async function fetchOnlineUsers() {
 //   const query = sql`select * from users where user_handle in (select user_handle from online_status where status);`
 //   const results = await PGWrapper.sqlAndMap(query, userMapper)

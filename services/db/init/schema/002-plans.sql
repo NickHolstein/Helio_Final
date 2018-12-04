@@ -7,5 +7,5 @@ create table if not exists plans
   last_updated_by uuid not null,
   last_updated_on timestamp not null
 );
-grant select, insert, update, delete on table plans to Toph's Playhouse_app;
-grant select on table plans to Toph's Playhouse_read;
+grant select, insert, update, delete on table plans to tp_app;
+grant select on table plans to tp_read;

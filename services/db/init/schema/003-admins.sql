@@ -3,5 +3,5 @@ create table if not exists admins
     id uuid primary key default gen_random_uuid(),
     user_handle uuid references users(user_handle)
 );
-grant select, insert, update, delete on table admins to Toph's Playhouse_app;
-grant select on table admins to Toph's Playhouse_read;
+grant select, insert, update, delete on table admins to tp_app;
+grant select on table admins to tp_read;

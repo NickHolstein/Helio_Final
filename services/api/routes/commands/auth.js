@@ -2,8 +2,9 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
 import { login } from '../repositories/auth'
-import { fetchUserByEmail } from '../repositories/users'
+import { fetchUserByEmail, registerNewUser } from '../repositories/users'
 import { verifyAdmin } from '../repositories/admins'
+
 
 export async function authinticateLogin(email, password) {
   if (!email || !password) {
@@ -54,4 +55,12 @@ export async function authinticateLoginByJwt(token) {
 
     return
   })
+}
+
+export async function checkPassMatch(password, confirmedPassword) {
+  if (password !== confirmedPassword) {
+    throw new StatusError ({status: 400, msg: 'Passwords do not match'})
+  } else {
+    await registerNewUser 
+  }
 }

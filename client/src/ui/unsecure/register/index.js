@@ -5,6 +5,8 @@ import { Button, Icon, Input } from 'semantic-ui-react'
 import connected from '../../../state/setup/connect'
 import { Page, Content, Form, Row } from './styles'
 
+
+
 class CreateAccount extends Component {
   constructor(props) {
     super(props)
@@ -22,6 +24,7 @@ class CreateAccount extends Component {
     // eslint-disable-next-line no-console
     this.setState({ [field]: event.target.value })
   }
+
 
   handleSubmit = () => {
     const { username, password } = this.state
