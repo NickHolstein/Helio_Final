@@ -29,7 +29,7 @@ services:
       port: '9001'
       BABEL_DISABLE_CACHE: 1
       JWT_SECRET: 'H34e626&D7'
-      JWT_COOKIE_NAME: 'pluralsight-token'
+      JWT_COOKIE_NAME: 'tp-token'
       DATABASE_URL: 'postgres://admin:admin@tp-postgres:5432/tp'
       DATABASE_TEST_URL: 'postgres://admin:admin@tp-postgres:5432/tp-integration'
     networks:
