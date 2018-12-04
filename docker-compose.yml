@@ -1,0 +1,64 @@
+version: '3.3'
+
+services:
+  Toph's Playhouse-postgres:
+    container_name: Toph's Playhouse-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      PGPASSWORD: admin
+    build:
+      context: ./services/db
+    ports:
+      - '5432:5432'
+    networks:
+      - 'backend-net'
+
+  Toph's Playhouse-api:
+    container_name: Toph's Playhouse-api
+    build:
+      context: ./services/api
+    ports:
+      - '9001:9001'
+    volumes:
+      - './services/api:/src/api'
+      - '/src/api/node_modules'
+    environment:
+      NODE_ENV: 'dev'
+      port: '9001'
+      BABEL_DISABLE_CACHE: 1
+      JWT_SECRET: 'H34e626&D7'
+      JWT_COOKIE_NAME: 'pluralsight-token'
+      DATABASE_URL: 'postgres://admin:admin@Toph's Playhouse-postgres:5432/Toph's Playhouse'
+      DATABASE_TEST_URL: 'postgres://admin:admin@Toph's Playhouse-postgres:5432/Toph's Playhouse-integration'
+    networks:
+      - 'backend-net'
+      - 'frontend-net'
+
+  Toph's Playhouse-web:
+    container_name: Toph's Playhouse-web
+    build:
+      context: ./client
+    ports:
+      - '3000:3000'
+      - '35729:35729'
+    environment:
+      NODE_ENV: 'development'
+      CHOKIDAR_USEPOLLING: 1
+      JWT_SECRET: 'H34e626&D7'
+      JWT_COOKIE_NAME: 'pluralsight-token'
+    volumes:
+      - './client:/src/app'
+      - '/src/app/node_modules'
+    depends_on:
+      - 'Toph's Playhouse-postgres'
+      - 'Toph's Playhouse-api'
+    networks:
+      - 'frontend-net'
+
+networks:
+  frontend-net:
+    driver: bridge
+  backend-net:
+    driver: bridge
