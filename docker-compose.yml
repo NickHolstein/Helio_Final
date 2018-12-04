@@ -1,8 +1,8 @@
 version: '3.3'
 
 services:
-  Toph's Playhouse-postgres:
-    container_name: Toph's Playhouse-postgres
+  tp-postgres:
+    container_name: tp-postgres
     restart: always
     environment:
       POSTGRES_USER: admin
@@ -15,8 +15,8 @@ services:
     networks:
       - 'backend-net'
 
-  Toph's Playhouse-api:
-    container_name: Toph's Playhouse-api
+  tp-api:
+    container_name: tp-api
     build:
       context: ./services/api
     ports:
@@ -30,14 +30,14 @@ services:
       BABEL_DISABLE_CACHE: 1
       JWT_SECRET: 'H34e626&D7'
       JWT_COOKIE_NAME: 'pluralsight-token'
-      DATABASE_URL: 'postgres://admin:admin@Toph's Playhouse-postgres:5432/Toph's Playhouse'
-      DATABASE_TEST_URL: 'postgres://admin:admin@Toph's Playhouse-postgres:5432/Toph's Playhouse-integration'
+      DATABASE_URL: 'postgres://admin:admin@tp-postgres:5432/tp'
+      DATABASE_TEST_URL: 'postgres://admin:admin@tp-postgres:5432/tp-integration'
     networks:
       - 'backend-net'
       - 'frontend-net'
 
-  Toph's Playhouse-web:
-    container_name: Toph's Playhouse-web
+  tp-web:
+    container_name: tp-web
     build:
       context: ./client
     ports:
@@ -52,8 +52,8 @@ services:
       - './client:/src/app'
       - '/src/app/node_modules'
     depends_on:
-      - 'Toph's Playhouse-postgres'
-      - 'Toph's Playhouse-api'
+      - 'tp-postgres'
+      - 'tp-api'
     networks:
       - 'frontend-net'
 
