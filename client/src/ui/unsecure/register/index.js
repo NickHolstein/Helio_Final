@@ -4,6 +4,7 @@ import { Button, Icon, Input } from 'semantic-ui-react'
 // import * as process from './process'
 import connected from '../../../state/setup/connect'
 import { Page, Content, Form, Row } from './styles'
+import { Register } from '../../../state/processes/auth/register'
 
 
 
@@ -25,10 +26,9 @@ class CreateAccount extends Component {
     this.setState({ [field]: event.target.value })
   }
 
-
   handleSubmit = () => {
-    const { username, password } = this.state
-    this.props.login.fetch(username, password)
+    const { password, confirmedPassword } = this.state
+    this.props.register(password, confirmedPassword)
   }
 
   render() {
@@ -64,5 +64,5 @@ class CreateAccount extends Component {
     )
   }
 }
-
-export default withRouter(connected([], [])(CreateAccount))
+export default Register()
+//export default withRouter(connected([], [])(CreateAccount)) 

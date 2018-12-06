@@ -9,7 +9,6 @@ export default class AuthController {
     router.post('/recover', wrapAsyncFunc(this.recover))
     router.put('/logout', wrapAsyncFunc(this.logout))
     router.post('/register', wrapAsyncFunc(this.register))
-    router.post('/register/passhash'), wrapAsyncFunc(this.registerPasshash)
   }
 
   async login(req, res) {
