@@ -47,7 +47,7 @@ class App extends Component {
                     <Route exact path="/contact-us" component={ContactUs} />,
 
                     <Route exact path="/sign-out" component={SignOut} />
-                    <Route exact path="/landing" component={Landing} />
+                    <Route path="/landing" component={Landing} />
                     <Route path="/profile" component={Profile} />
                     <Route component={BadRequest} />
                 </Switch>

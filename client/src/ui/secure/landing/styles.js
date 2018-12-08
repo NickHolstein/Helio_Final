@@ -12,3 +12,9 @@ export const Page = styled('div')`
     ". . .";
   background-color: #f4f4f4;
 `
+export const Sidebar = styled('div')`
+  width: 45%;
+  height: 360%;
+  background-color: lightgrey;
+  `
+
