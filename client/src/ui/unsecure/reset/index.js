@@ -10,7 +10,7 @@ class CreateAccount extends Component {
     super(props)
     this.state = {
       firstName: '',
-      lastName: '',
+      surname: '',
       username: '',
       password: '',
       confirmedPassword: '',

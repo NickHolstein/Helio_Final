@@ -1,20 +1,29 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { Button, Icon, Input } from 'semantic-ui-react'
-// import * as process from './process'
+
 import connected from '../../../state/setup/connect'
 import { Page, Content, Form, Row } from './styles'
+import * as registerActions from '../../../state/processes/register/actions'
+import { selector as users } from '../../../state/entities/users/reducer'
 
 class CreateAccount extends Component {
   constructor(props) {
     super(props)
     this.state = {
       firstName: '',
-      lastName: '',
+      surname: '',
       username: '',
       password: '',
       confirmedPassword: '',
-      email: ''
+      email: '',
+      registered: false
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(!this.props.users.active.userHandle && nextProps.users.active.userHandle) {
+      this.setState({ registered: true })
     }
   }
 
@@ -25,18 +34,21 @@ class CreateAccount extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    const { username, password } = this.state
-    this.props.login.fetch(username, password)
+    this.props.registerActions.registerUser({ ...this.state})
   }
 
   render() {
+    if(this.state.registered) {
+      return <Redirect to={{pathname: '/landing', state: { from: this.props.location } }} />
+    }
+
     return (
       <Page>
         <Content>
           <Form onSubmit={this.handleSubmit}>
             <Row>
               <Input placeholder="First name" type="text" onChange={this.handleInput('firstName')} />
-              <Input placeholder="Last name" type="text" onChange={this.handleInput('lastName')} />
+              <Input placeholder="Last name" type="text" onChange={this.handleInput('surname')} />
             </Row>
             <Row>
               <Input icon="user" placeholder="Username" type="text" onChange={this.handleInput('username')} />
@@ -63,4 +75,4 @@ class CreateAccount extends Component {
   }
 }
 
-export default withRouter(connected([], [])(CreateAccount))
+export default connected([users], [registerActions])(CreateAccount)

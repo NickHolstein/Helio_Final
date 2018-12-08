@@ -6,7 +6,7 @@ const userMapper = (row) => ({
   username: row.username,
   firstName: row.first_name,
   middleName: row.middle_name,
-  lastName: row.last_name,
+  surname: row.surname,
   suffix: row.suffix,
   email: row.email,
   joinedDate: row.joined_date
@@ -26,6 +26,19 @@ export async function updateUserEmail(handle, val) {
 
 export async function updateUsername(handle, val) {
   const statement = sql`update users set username = ${val} where user_handle = ${handle} returning *;`
+  const results = await PGWrapper.sqlAndMap(statement, userMapper)
+  return results[0]
+}
+
+export async function createUserEntry({
+  email,
+  firstName,
+  surname,
+  username
+}) {
+  const statement = sql`insert into users( email, first_name, surname, username) 
+                          values (${email}, ${firstName}, ${surname}, ${username}) 
+                          returning *;`
   const results = await PGWrapper.sqlAndMap(statement, userMapper)
   return results[0]
 }

@@ -20,7 +20,7 @@ export default class AuthController {
     res.send({
       user: {
         firstName: token.firstName,
-        lastName: token.lastName,
+        surname: token.surname,
         middleName: token.middleName,
         suffix: token.suffix,
         userHandle: token.userHandle,

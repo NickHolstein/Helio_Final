@@ -7,10 +7,11 @@ create table if not exists users
     username text,
     first_name text,
   	middle_name text,
-  	last_name text,
+  	surname text,
   	suffix text,
-    email text,
-    joined_date timestamp
+    email text not null unique,
+    joined_date timestamp default now(),
+    verified boolean
 );
-grant select, insert, update, delete on table users to Toph's Playhouse_app;
-grant select on table users to Toph's Playhouse_read;
+grant select, insert, update, delete on table users to tp_app;
+grant select on table users to tp_read;

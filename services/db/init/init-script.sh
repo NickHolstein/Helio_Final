@@ -1,6 +1,6 @@
 #!/bin/bash
 
-host="Toph's Playhouse-db"
+host="tp-db"
 adminUser="admin"
 
 psql -U $adminUser --echo-errors -q -f ~/create-db.sql

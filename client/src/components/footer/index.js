@@ -11,7 +11,7 @@ class Footer extends Component {
     return (
       <FooterContainer>
         <div className="copyright">
-          <Icon name="copyright" />Toph's Playhouse 2018. All rights resevered
+          <Icon name="copyright" />tp 2018. All rights resevered
         </div>
       </FooterContainer>
     )

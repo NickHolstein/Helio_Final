@@ -1,4 +1,5 @@
 import TYPES from '../../processes/auth/login/types'
+import REGISTER_TYPES from '../../processes/register/types'
 
 export const initialState = {
   active: {
@@ -8,13 +9,14 @@ export const initialState = {
   loading: false
 }
 
-const fetchingUserData = (state, { admin, user }) => ({
+const fetchingUserData = (state) => ({
   ...state,
   loading: true
 })
 
 const loginUser = (state, { admin, user }) => ({
   ...state,
+  loading: false,
   active: {
     ...user,
     admin
@@ -25,6 +27,8 @@ const loginUser = (state, { admin, user }) => ({
 const handlers = {
   [TYPES.FETCH_USER_TOKEN_REQUEST]: fetchingUserData,
   [TYPES.FETCH_USER_TOKEN_SUCCESS]: loginUser,
+  [REGISTER_TYPES.REGISTER_USER_REQUEST]: fetchingUserData,
+  [REGISTER_TYPES.REGISTER_USER_SUCCESS]: loginUser,
 }
 
 export default function(state = initialState, action = {}) {

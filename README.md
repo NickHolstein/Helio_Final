@@ -1,10 +1,10 @@
-# Toph's Playhouse Monolith
-Toph's Playhouse Monolith is the base project used to build an minimal viable product.
+# tp Monolith
+tp Monolith is the base project used to build an minimal viable product.
 Postgresql is the main database, node and express are used for the api, and react with redux-saga for the UI.
 
 # Getting Started
 
-The following is an explanation for getting Toph's Playhouse-monolith runing on your local machine. These instructions do not include any instructions for use with windows (these will be added at a later date).
+The following is an explanation for getting tp-monolith runing on your local machine. These instructions do not include any instructions for use with windows (these will be added at a later date).
 
 ## Setup
 
@@ -16,7 +16,7 @@ The following is an explanation for getting Toph's Playhouse-monolith runing on 
         1. Run the following command `git clone github.com/NickHolstein/Toph-s-Playhouse.git`.
     1. If you haven't setup ssh and simply want to type in your password each time:
         1. Run the following command `git clone https://github.com/NickHolstein/Toph-s-Playhouse.git`.
-    1. Move into the newly cloned directory by running `cd Toph's Playhouse-monolith`.
+    1. Move into the newly cloned directory by running `cd tp-monolith`.
 
 ### OSX Only Steps - One time only
 1. Install [docker ce](https://store.docker.com/editions/community/docker-ce-desktop-mac).

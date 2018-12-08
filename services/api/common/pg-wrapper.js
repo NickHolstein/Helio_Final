@@ -78,11 +78,16 @@ class PGWrapper {
     })
 
     try {
+      console.log('0')
       this._pgQueue.push(true)
+      console.log('1')
       const results = await this.execute(statement.text, statement.values, resultMapper)
+      console.log('2')
       this._pgQueue.pop()
+      console.log('3')
       return results.rows
     } catch (errParams) {
+      console.log("It fail here")
       this._pgQueue.pop()
       this.logError(errParams)
     }
